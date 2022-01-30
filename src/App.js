@@ -42,7 +42,7 @@ function App() {
   return (
     // BEM convetion
     <Router>
-      <div className="App">
+      <div className="app">
         <Switch>
           <Route path="/orders">
             <Header/>

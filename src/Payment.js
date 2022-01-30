@@ -51,15 +51,15 @@ function Payment() {
             // payment intent = payment confirmation
 
             db
-              .collection('users')
-              .doc(user?.id)
-              .collection('orders')
-              .doc(paymentIntent.id)
-              .set({
-                  basket: basket,
-                  amount: paymentIntent.amount,
-                  created: paymentIntent.created,
-              })
+            .collection('users')
+            .doc(user?.uid)
+            .collection('orders')
+            .doc(paymentIntent.id)
+            .set({
+                basket: basket,
+                amount: paymentIntent.amount,
+                created: paymentIntent.created,
+            })
 
             setSucceeded(true);
             setError(null);
@@ -69,7 +69,7 @@ function Payment() {
                 type: 'EMPTY_BASKET'
             })
 
-            history.replaceState('/orders')
+            history.replace('/orders')
         })
     }
 
@@ -87,6 +87,8 @@ function Payment() {
                         <Link to='/checkout'>{basket?.length} items</Link>
                     )
                 </h1>
+
+                {/* payment - delivery address */}
                 <div className='payment__section'>
                     <div className='payment__title'>
                         <h3>Delivery Address</h3>
@@ -97,6 +99,8 @@ function Payment() {
                         <p>Los Angeles, CA</p>
                     </div>
                 </div>
+
+                {/* review items */}
 
                 <div className='payment__section'>
                     <div className='payment__title'>
@@ -114,6 +118,8 @@ function Payment() {
                         ))}
                     </div>
                 </div>
+
+                {/* payment method */}
 
                 <div className='payment__section'>
                     <div className='payment__title'>
